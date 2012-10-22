@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome to the ninja project #2 with led</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	$(document).ready(function (){
+		$('#led1').click(function (){
+			$.ajax({
+				url: "/led",
+				data: {led:1},
+				type:'get',
+				complete: function (data){
+					console.log(data.responseText);
+					if (data.responseText == 1)
+						$('#led1').css({"background-color":"green"});
+					else
+						$('#led1').css({"background-color":"white"});
+				}
+			})
+		});
+		$('#led2').click(function (){
+			$.ajax({
+				url: "/led",
+				data: {led:2},
+				type:'get',
+				complete: function (data){
+					console.log(data.responseText);
+					if (data.responseText == 1)
+						$('#led2').css({"background-color":"green"});
+					else
+						$('#led2').css({"background-color":"white"});
+				}
+			})
+		});
+		$('#servo_button').click(function (){
+			$.ajax({
+				url: "/servo",
+				data: {servo:2}
+			})
+		})
+	})
+
+	</script>
+</head>
+<body>
+	<h1>The Ninja #2 project</h1>
+	<div id="led1" style="width:200px;height:100px;background-color:white;border:1px solid black;padding:10px;"></div>
+	<div id="led2" style="width:200px;height:100px;background-color:white;border:1px solid black;padding:10px;"></div>
+	<input type='text' id='servo' />
+	<span id='servo_button'>Envoyer</span>
+</body>	
+</html>
